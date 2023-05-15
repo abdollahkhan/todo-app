@@ -1,14 +1,24 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
-ReactDOM.render(
+const domNode = document.getElementById("root")!;
+
+const root = createRoot(domNode);
+
+root.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+    <Provider store={store}>
+      <ChakraProvider>
+        <App />
+      </ChakraProvider>
+    </Provider>
+  </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
